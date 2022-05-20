@@ -35,7 +35,7 @@ public class IncubatorController {
     }
 
     @PatchMapping("/{id}")
-    public ResponseEntity<Object> updateApplicationById(@PathVariable Long id, @RequestBody Map<String, Object> applicationMap) throws IncubatorNotFound {
+    public ResponseEntity<Object> updateApplicationById(@PathVariable Long id, @RequestBody Map<String, Object> applicationMap) throws IncubatorNotFound, InvalidStatus {
         return incubatorService.updateApplication(id, applicationMap);
     }
 

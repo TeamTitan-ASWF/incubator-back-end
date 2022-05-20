@@ -7,9 +7,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.annotation.Rollback;
-
 import javax.transaction.Transactional;
-
 import java.time.LocalDate;
 
 import static org.hamcrest.Matchers.is;
@@ -18,8 +16,6 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
-
-
 
 @SpringBootTest
 @AutoConfigureMockMvc
@@ -93,7 +89,7 @@ public class IncubatorControllerTest {
                 .andExpect(content().string("Application deleted"));
         this.mvc.perform(delete("/123"))
                 .andExpect(status().isBadRequest())
-                .andExpect(content().string("Application does not exist, therefore not deleted."));
+                .andExpect(content().string("Application does not exist, therefore not deleted"));
 
 
     }
@@ -147,7 +143,7 @@ public class IncubatorControllerTest {
                 .content("""
                         {
                             "fName":"Joseph",
-                            "lastACFT":2022-05-10
+                            "lastACFT":"2022-05-10"
                         }
                         """)
         )
@@ -161,9 +157,38 @@ public class IncubatorControllerTest {
                 .andExpect(jsonPath("$.lastACFT", is("2022-05-10")))
                 .andExpect(jsonPath("$.acftScore", is(478)));
 
+        this.mvc.perform(patch("/14")
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content("{}"))
+                .andExpect(status().isBadRequest())
+                .andExpect(content().string("Application does not exist, therefore not updated"));
     }
 
 
+//    @Test
+//    @Transactional
+//    @Rollback
+//    public void updateWithInvalidStatusGivesError() throws Exception {
+//        Incubator testApplication = new Incubator("Joe", "Star", "n",
+//                "1234567890", "E-4", LocalDate.of(1980, 9, 10),
+//                LocalDate.of(2022, 05, 19), 478);
+//
+//        this.incubatorRepository.save(testApplication);
+//
+//        Long id = testApplication.getId();
+//        String path = "/" + id + "";
+//
+//        this.mvc.perform(patch(path)
+//                        .contentType(MediaType.APPLICATION_JSON)
+//                        .content("""
+//                        {
+//                            "status":"Joseph"
+//                        }
+//                        """)
+//                )
+//                .andExpect(status().isBadRequest())
+//                .andExpect(content().string("Invalid Status submitted, needs to be: pending, accepted, or rejected"));
+//    }
 
-
+    // unnecessary comment
 }
