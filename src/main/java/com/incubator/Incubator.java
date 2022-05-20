@@ -213,8 +213,12 @@ public class Incubator {
         return status;
     }
 
-    public void setStatus(String status) {
-        this.status = status;
+    public void setStatus(String status) throws InvalidStatus {
+        if (status == "pending" || status == "accepted" || status == "rejected") {
+            this.status = status;
+        } else {
+            throw new InvalidStatus("Invalid Status submitted, needs to be: pending, accepted, or rejected");
+        }
     }
 
     public LocalDate getDateSubmitted() {

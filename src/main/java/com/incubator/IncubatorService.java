@@ -33,7 +33,7 @@ public class IncubatorService {
         Optional<Incubator> foundIncubator = repository.findById(id);
 
         if (foundIncubator.isEmpty()) {
-            throw new IncubatorNotFound("Application does not exist, therefore not deleted.");
+            throw new IncubatorNotFound("Application does not exist, therefore not deleted");
         }
 
         repository.deleteById(id);
@@ -51,12 +51,16 @@ public class IncubatorService {
         return new ResponseEntity<>(foundIncubator.get(), HttpStatus.OK);
     }
 
-    public ResponseEntity<Object> updateApplication(Long id, Map<String, Object> applicationMap) throws IncubatorNotFound {
-        Incubator foundIncubator = repository.findById(id).get();
+    public ResponseEntity<Object> updateApplication(Long id, Map<String, Object> applicationMap) throws IncubatorNotFound, InvalidStatus {
+        Optional<Incubator> checkForIncubator = repository.findById(id);
 
-        if (foundIncubator.getId() == null) {
-            throw new IncubatorNotFound("Application does not exist");
+        if (checkForIncubator.isEmpty()) {
+            throw new IncubatorNotFound("Application does not exist, therefore not updated");
         }
+
+        Incubator foundIncubator = checkForIncubator.get();
+
+        boolean isInvalidStatus = false;
 
         applicationMap.forEach((k, v) -> {
             switch (k) {
@@ -76,10 +80,10 @@ public class IncubatorService {
                     foundIncubator.setRank((String) v);
                     break;
                 case "dob":
-                    foundIncubator.setDob((LocalDate) v);
+                    foundIncubator.setDob(LocalDate.parse(v.toString()));
                     break;
                 case "lastACFT":
-                    foundIncubator.setLastACFT((LocalDate) v);
+                    foundIncubator.setLastACFT(LocalDate.parse(v.toString()));
                     break;
                 case "acftScore":
                     foundIncubator.setAcftScore((Integer) v);
@@ -109,27 +113,22 @@ public class IncubatorService {
                     foundIncubator.setReferencePhone((String) v);
                     break;
                 case "status":
-                    if (v == "pending" || v == "accepted" || v == "rejected") {
+                    try {
                         foundIncubator.setStatus((String) v);
-                    } else {
-                        try {
-                            throw new IncubatorNotFound("Application does not exist");
-                        } catch (IncubatorNotFound e) {
-                            e.printStackTrace();
-                        }
+                    } catch (Exception e) {
+                        e.printStackTrace();
                     }
                     break;
                 case "dateSubmitted":
-                    foundIncubator.setDateSubmitted((LocalDate) v);
+                    foundIncubator.setDateSubmitted(LocalDate.parse(v.toString()));
                     break;
                 default:
                     break;
             }
         });
+
         this.repository.save(foundIncubator);
 
-
         return new ResponseEntity<>(foundIncubator, HttpStatus.OK);
-
     }
 }

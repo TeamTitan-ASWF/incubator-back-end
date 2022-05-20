@@ -11,4 +11,9 @@ public class ApplicationErrorHandler {
     public ResponseEntity<String> handleIncubatorNotFound(IncubatorNotFound e) {
         return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
     }
+
+    @ExceptionHandler(InvalidStatus.class)
+    public ResponseEntity<String> handleInvalidStatus(InvalidStatus e) {
+        return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
+    }
 }
