@@ -1,0 +1,74 @@
+[
+  {
+    "fName": "Eren",
+    "lName": "Jaeger",
+    "mI": "A",
+    "dodId": "1234567890",
+    "rank": "PVT",
+    "dob": "2000-01-01",
+    "lastACFT": "2000-02-01",
+    "acftScore": 300,
+    "height": 70,
+    "weight": 150
+  },
+  {
+    "fName": "Levi",
+    "lName": "Ackerman",
+    "mI": "B",
+    "dodId": "1234567890",
+    "rank": "PVT",
+    "dob": "2000-01-01",
+    "lastACFT": "2000-02-01",
+    "acftScore": 300,
+    "height": 70,
+    "weight": 150
+  },
+  {
+    "fName": "Mikasa",
+    "lName": "Ackerman",
+    "mI": "C",
+    "dodId": "1234567890",
+    "rank": "PVT",
+    "dob": "2000-01-01",
+    "lastACFT": "2000-02-01",
+    "acftScore": 300,
+    "height": 70,
+    "weight": 150
+  },
+  {
+    "fName": "Armin",
+    "lName": "Arlet",
+    "mI": "D",
+    "dodId": "1234567890",
+    "rank": "PVT",
+    "dob": "2000-01-01",
+    "lastACFT": "2000-02-01",
+    "acftScore": 300,
+    "height": 70,
+    "weight": 150
+  },
+  {
+    "fName": "Reiner",
+    "lName": "Braun",
+    "mI": "E",
+    "dodId": "1234567890",
+    "rank": "PVT",
+    "dob": "2000-01-01",
+    "lastACFT": "2000-02-01",
+    "acftScore": 300,
+    "height": 70,
+    "weight": 150
+  },
+  {
+    "fName": "Historia",
+    "lName": "Reiss",
+    "mI": "F",
+    "dodId": "1234567890",
+    "rank": "PVT",
+    "dob": "2000-01-01",
+    "lastACFT": "2000-02-01",
+    "acftScore": 300,
+    "height": 70,
+    "weight": 150
+  }
+]
