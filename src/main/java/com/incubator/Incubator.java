@@ -23,10 +23,10 @@ public class Incubator {
     private LocalDate lastACFT;
     private Integer acftScore;
     private Integer height;
-    private  Integer weight;
-    @Lob
+    private  Float weight;
+    @Column(length = 3000)
     private String techBG;
-    @Lob
+    @Column(length = 3000)
     private String motivation;
     private String referenceName;
     private String referenceRank;
@@ -34,9 +34,9 @@ public class Incubator {
     private String referencePhone;
     private String status = "pending";
     @JsonFormat(pattern = "yyyy-MM-dd", timezone = "America/Chicago")
-    private LocalDate dateSubmitted;
+    private LocalDate dateSubmitted = LocalDate.now();
 
-    public Incubator(String fName, String lName, String mI, String dodId, String rank, LocalDate dob, LocalDate lastACFT, Integer acftScore, Integer height, Integer weight, String techBG, String motivation, String referenceName, String referenceRank, String referenceEmail, String referencePhone, String status, LocalDate dateSubmitted) {
+    public Incubator(String fName, String lName, String mI, String dodId, String rank, LocalDate dob, LocalDate lastACFT, Integer acftScore, Integer height, Float weight, String techBG, String motivation, String referenceName, String referenceRank, String referenceEmail, String referencePhone, String status, LocalDate dateSubmitted) {
 
         this.fName = fName;
         this.lName = lName;
@@ -153,11 +153,11 @@ public class Incubator {
         this.height = height;
     }
 
-    public Integer getWeight() {
+    public Float getWeight() {
         return weight;
     }
 
-    public void setWeight(Integer weight) {
+    public void setWeight(Float weight) {
         this.weight = weight;
     }
 

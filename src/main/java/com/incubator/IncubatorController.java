@@ -35,6 +35,11 @@ public class IncubatorController {
         return incubatorService.readSpecificApplication(id);
     }
 
+    @GetMapping("/dod/{dodId}")
+    public ResponseEntity<Incubator> readApplicationByDodId(@PathVariable String dodId) throws IncubatorNotFound {
+        return incubatorService.readApplicationByDodId(dodId);
+    }
+
     @PatchMapping("/{id}")
     public ResponseEntity<Object> updateApplicationById(@PathVariable Long id, @RequestBody Map<String, Object> applicationMap) throws IncubatorNotFound, InvalidStatus {
         return incubatorService.updateApplication(id, applicationMap);
