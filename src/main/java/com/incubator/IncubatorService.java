@@ -4,6 +4,7 @@ import org.apache.tomcat.jni.Local;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.RequestBody;
 
 import java.text.ParseException;
@@ -92,7 +93,7 @@ public class IncubatorService {
                     foundIncubator.setHeight((Integer) v);
                     break;
                 case "weight":
-                    foundIncubator.setWeight((Integer) v);
+                    foundIncubator.setWeight((Float) v);
                     break;
                 case "techBG":
                     foundIncubator.setTechBG((String) v);
@@ -130,5 +131,16 @@ public class IncubatorService {
         this.repository.save(foundIncubator);
 
         return new ResponseEntity<>(foundIncubator, HttpStatus.OK);
+    }
+
+    @Transactional
+    public ResponseEntity<Incubator> readApplicationByDodId(String dodId) throws IncubatorNotFound {
+        Optional<Incubator> foundIncubator = repository.findFirstByDodIdEquals(dodId);
+
+        if (foundIncubator.isEmpty()) {
+            throw new IncubatorNotFound("Application does not exist, please check that your DODID is correct.");
+        }
+
+        return new ResponseEntity<>(foundIncubator.get(), HttpStatus.OK);
     }
 }
