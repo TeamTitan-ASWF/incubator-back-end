@@ -9,7 +9,8 @@
     "lastACFT": "2000-02-01",
     "acftScore": 300,
     "height": 70,
-    "weight": 150
+    "weight": 150,
+    "dateSubmitted": "2020-08-10"
   },
   {
     "fName": "Levi",
@@ -21,7 +22,8 @@
     "lastACFT": "2000-02-01",
     "acftScore": 300,
     "height": 70,
-    "weight": 150
+    "weight": 150,
+    "dateSubmitted": "2020-08-10"
   },
   {
     "fName": "Mikasa",
@@ -33,7 +35,8 @@
     "lastACFT": "2000-02-01",
     "acftScore": 300,
     "height": 70,
-    "weight": 150
+    "weight": 150,
+    "dateSubmitted": "2020-08-10"
   },
   {
     "fName": "Armin",
@@ -45,7 +48,8 @@
     "lastACFT": "2000-02-01",
     "acftScore": 300,
     "height": 70,
-    "weight": 150
+    "weight": 150,
+    "dateSubmitted": "2020-08-10"
   },
   {
     "fName": "Reiner",
@@ -57,7 +61,8 @@
     "lastACFT": "2000-02-01",
     "acftScore": 300,
     "height": 70,
-    "weight": 150
+    "weight": 150,
+    "dateSubmitted": "2020-08-10"
   },
   {
     "fName": "Historia",
@@ -69,6 +74,7 @@
     "lastACFT": "2000-02-01",
     "acftScore": 300,
     "height": 70,
-    "weight": 150
+    "weight": 150,
+    "dateSubmitted": "2020-08-10"
   }
 ]

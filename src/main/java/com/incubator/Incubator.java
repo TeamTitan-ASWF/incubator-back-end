@@ -214,10 +214,10 @@ public class Incubator {
     }
 
     public void setStatus(String status) throws InvalidStatus {
-        if (status == "pending" || status == "accepted" || status == "rejected") {
+        if (status.equals("pending") || status.equals("accepted") || status.equals("rejected")) {
             this.status = status;
         } else {
-            throw new InvalidStatus("Invalid Status submitted, needs to be: pending, accepted, or rejected");
+            throw new InvalidStatus("Invalid Status submitted, needs to be: pending, accepted, or rejected" + " and you used: " + status);
         }
     }
 
