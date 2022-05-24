@@ -63,6 +63,67 @@ public class IncubatorService {
 
         boolean isInvalidStatus = false;
 
+        for (String k : applicationMap.keySet()) {
+            switch (k) {
+                case "fName":
+                    foundIncubator.setfName((String) applicationMap.get(k));
+                    break;
+                case "lName":
+                    foundIncubator.setlName((String) applicationMap.get(k));
+                    break;
+                case "mI":
+                    foundIncubator.setmI((String) applicationMap.get(k));
+                    break;
+                case "dodId":
+                    foundIncubator.setDodId((String) applicationMap.get(k));
+                    break;
+                case "rank":
+                    foundIncubator.setRank((String) applicationMap.get(k));
+                    break;
+                case "dob":
+                    foundIncubator.setDob(LocalDate.parse(applicationMap.get(k).toString()));
+                    break;
+                case "lastACFT":
+                    foundIncubator.setLastACFT(LocalDate.parse(applicationMap.get(k).toString()));
+                    break;
+                case "acftScore":
+                    foundIncubator.setAcftScore((Integer) applicationMap.get(k));
+                    break;
+                case "height":
+                    foundIncubator.setHeight((Integer) applicationMap.get(k));
+                    break;
+                case "weight":
+                    foundIncubator.setWeight((Float) applicationMap.get(k));
+                    break;
+                case "techBG":
+                    foundIncubator.setTechBG((String) applicationMap.get(k));
+                    break;
+                case "motivation":
+                    foundIncubator.setMotivation((String) applicationMap.get(k));
+                    break;
+                case "referenceName":
+                    foundIncubator.setReferenceName((String) applicationMap.get(k));
+                    break;
+                case "referenceRank":
+                    foundIncubator.setReferenceRank((String) applicationMap.get(k));
+                    break;
+                case "referenceEmail":
+                    foundIncubator.setReferenceEmail((String) applicationMap.get(k));
+                    break;
+                case "referencePhone":
+                    foundIncubator.setReferencePhone((String) applicationMap.get(k));
+                    break;
+                case "status":
+                    foundIncubator.setStatus((String) applicationMap.get(k));
+                    break;
+                case "dateSubmitted":
+                    foundIncubator.setDateSubmitted(LocalDate.parse(applicationMap.get(k).toString()));
+                    break;
+                default:
+                    break;
+            }
+        }
+/*
         applicationMap.forEach((k, v) -> {
             switch (k) {
                 case "fName":
@@ -127,7 +188,7 @@ public class IncubatorService {
                     break;
             }
         });
-
+*/
         this.repository.save(foundIncubator);
 
         return new ResponseEntity<>(foundIncubator, HttpStatus.OK);
