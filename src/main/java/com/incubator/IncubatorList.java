@@ -14,6 +14,16 @@ public class IncubatorList {
     @JsonFormat(pattern = "yyyy-MM-dd", timezone = "America/Chicago")
     private LocalDate dateSubmitted;
 
+    public IncubatorList(Long id, String fName, String lName, String mI, String rank, String status, LocalDate dateSubmitted) {
+        this.id = id;
+        this.fName = fName;
+        this.lName = lName;
+        this.mI = mI;
+        this.rank = rank;
+        this.status = status;
+        this.dateSubmitted = dateSubmitted;
+    }
+
     public Long getId() {
         return id;
     }

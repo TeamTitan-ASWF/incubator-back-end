@@ -27,7 +27,7 @@ public class IncubatorService {
     }
 
     public ResponseEntity<Object> readApplications() {
-        return new ResponseEntity<>(repository.findAll(), HttpStatus.OK);
+        return new ResponseEntity<>(repository.getReviewerApplicationList(), HttpStatus.OK);
     }
 
     public ResponseEntity<Object> deleteApplication(Long id) throws IncubatorNotFound {
