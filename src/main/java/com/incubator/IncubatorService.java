@@ -26,6 +26,11 @@ public class IncubatorService {
         return new ResponseEntity<>(incubator, HttpStatus.CREATED);
     }
 
+    public ResponseEntity<Object> createApplications(Iterable<Incubator> incubatorList) {
+        repository.saveAll(incubatorList);
+        return new ResponseEntity<>(incubatorList, HttpStatus.CREATED);
+    }
+
     public ResponseEntity<Object> readApplications() {
         return new ResponseEntity<>(repository.getReviewerApplicationList(), HttpStatus.OK);
     }
