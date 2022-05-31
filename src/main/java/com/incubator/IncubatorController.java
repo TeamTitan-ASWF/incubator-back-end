@@ -20,6 +20,11 @@ public class IncubatorController {
         return incubatorService.createApplication (incubator);
     }
 
+    @PostMapping("/multiple")
+    public ResponseEntity<Object> createsApplications (@RequestBody Iterable<Incubator> incubatorList) {
+        return incubatorService.createApplications(incubatorList);
+    }
+
     @GetMapping
     public ResponseEntity<Object> getAllApplications() {
         return incubatorService.readApplications();

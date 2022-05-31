@@ -10,16 +10,20 @@ public class IncubatorList {
     private  String lName;
     private String mI;
     private  String rank;
+
+    @JsonFormat(pattern = "yyyy-MM-dd", timezone = "America/Chicago")
+    private LocalDate dob;
     private String status = "pending";
     @JsonFormat(pattern = "yyyy-MM-dd", timezone = "America/Chicago")
     private LocalDate dateSubmitted;
 
-    public IncubatorList(Long id, String fName, String lName, String mI, String rank, String status, LocalDate dateSubmitted) {
+    public IncubatorList(Long id, String fName, String lName, String mI, String rank, LocalDate dob, String status, LocalDate dateSubmitted) {
         this.id = id;
         this.fName = fName;
         this.lName = lName;
         this.mI = mI;
         this.rank = rank;
+        this.dob = dob;
         this.status = status;
         this.dateSubmitted = dateSubmitted;
     }
@@ -78,5 +82,13 @@ public class IncubatorList {
 
     public void setDateSubmitted(LocalDate dateSubmitted) {
         this.dateSubmitted = dateSubmitted;
+    }
+
+    public LocalDate getDob() {
+        return dob;
+    }
+
+    public void setDob(LocalDate dob) {
+        this.dob = dob;
     }
 }

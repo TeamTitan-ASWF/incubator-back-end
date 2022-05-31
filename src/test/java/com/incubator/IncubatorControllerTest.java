@@ -64,11 +64,7 @@ public class IncubatorControllerTest {
                 .andExpect(jsonPath("$[0].fName", is("Joe")))
                 .andExpect(jsonPath("$[0].lName", is("Star")))
                 .andExpect(jsonPath("$[0].mI", is("n")))
-                .andExpect(jsonPath("$[0].dodId", is("1234567890")))
-                .andExpect(jsonPath("$[0].rank", is("E-4")))
-                .andExpect(jsonPath("$[0].dob", is("1980-09-10")))
-                .andExpect(jsonPath("$[0].lastACFT", is("2022-05-19")))
-                .andExpect(jsonPath("$[0].acftScore", is(478)));
+                .andExpect(jsonPath("$[0].rank", is("E-4")));
     }
 
     @Test
