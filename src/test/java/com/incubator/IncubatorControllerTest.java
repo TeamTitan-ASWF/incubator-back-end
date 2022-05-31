@@ -35,7 +35,7 @@ public class IncubatorControllerTest {
                 .contentType(MediaType.APPLICATION_JSON)
                 .content("{\"fName\":\"Joe\", \"lName\":\"Star\", \"mI\":\"n\", " +
                         "\"dodId\":\"1234567890\", \"rank\":\"E-4\", \"dob\": \"1980-09-10\", " +
-                        "\"lastACFT\": \"2022-05-19\", \"acftScore\": 478}")
+                        "\"lastACFT\": \"2022-05-19\", \"acftScore\": 477}")
         )
                 .andExpect(status().isCreated())
                 .andExpect(jsonPath("$.fName", is("Joe")))
