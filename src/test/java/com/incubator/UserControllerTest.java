@@ -39,9 +39,9 @@ public class UserControllerTest {
     public void createUserTest() throws Exception {
         ObjectMapper mapper = new ObjectMapper();
         User testUser = new User("CaptainAmerica","Iloveamerica");
-        MockHttpServletRequestBuilder requestBuilder = post("/user").contentType(MediaType.APPLICATION_JSON)
+        MockHttpServletRequestBuilder requestBuilder = post("/create_user").contentType(MediaType.APPLICATION_JSON)
                 .content(mapper.writeValueAsString(testUser));
-        this.mvc.perform(requestBuilder).andExpect(jsonPath("$.userName",is("CaptainAmerica")));
+        this.mvc.perform(requestBuilder).andExpect(content().string("User created"));
     }
 
 
@@ -51,7 +51,7 @@ public class UserControllerTest {
     public void getUserTest() throws  Exception{
         User testUser = new User("CaptainAmerica","Iloveamerica");
         userRepository.save(testUser);
-        mvc.perform(get("/user/"+ testUser.getId())).andExpect(jsonPath("$.password",is("Iloveamerica")));
+        mvc.perform(get("/user/"+ testUser.getId())).andExpect(jsonPath("$.userName",is("CaptainAmerica")));
 
     }
 
