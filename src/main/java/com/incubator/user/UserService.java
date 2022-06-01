@@ -17,9 +17,9 @@ public class UserService {
     }
 
     public ResponseEntity<String> postOneUser(User user) {
-        Optional<User> realUser =  repository.findByUserName(user.getUserName());
-        if(realUser.isPresent()){
-            return new ResponseEntity<>("User name already taken",HttpStatus.NOT_ACCEPTABLE);
+        Optional<User> realUser = repository.findByUserName(user.getUserName());
+        if (realUser.isPresent()) {
+            return new ResponseEntity<>("User name already taken", HttpStatus.NOT_ACCEPTABLE);
 
         }
         repository.save(user);
@@ -27,22 +27,20 @@ public class UserService {
     }
 
     public ResponseEntity<User> getsOneUser(Long id) {
-        return new ResponseEntity<> (repository.findById(id).get(), HttpStatus.OK);
+        return new ResponseEntity<>(repository.findById(id).get(), HttpStatus.OK);
     }
 
-    public ResponseEntity<String> authenticateUser(HashMap<String, String> userInfo) {
-    Optional<User> realUser =  repository.findByUserName(userInfo.get("userName"));
-    if(realUser.isEmpty()){
-        return new ResponseEntity<>("User name invalid",HttpStatus.NOT_FOUND);
-    }else {
-        if(realUser.get().getPassword().equals(userInfo.get("password"))){
-            return new ResponseEntity<>(realUser.get().getId().toString(),HttpStatus.ACCEPTED);
-
-        }else {
-            return new ResponseEntity<>("Not Authenticated",HttpStatus.NOT_ACCEPTABLE);
+    public ResponseEntity<Object> authenticateUser(HashMap<String, String> userInfo) {
+        Optional<User> realUser = repository.findByUserName(userInfo.get("userName"));
+        if (realUser.isEmpty()) {
+            return new ResponseEntity<>("User name invalid", HttpStatus.NOT_FOUND);
+        } else {
+            if (realUser.get().getPassword().equals(userInfo.get("password"))) {
+                return new ResponseEntity<>(realUser.get(), HttpStatus.ACCEPTED);
+            } else {
+                return new ResponseEntity<>("Not Authenticated", HttpStatus.NOT_ACCEPTABLE);
+            }
         }
-
-    }
 
     }
 
