@@ -4,7 +4,9 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
 import java.util.HashMap;
+import java.util.Map;
 import java.util.Optional;
 
 @Service
@@ -44,6 +46,43 @@ public class UserService {
 
     }
 
+    public ResponseEntity<String> updateUser(Long id, Map<String, Object> userMap) throws UserNotFound {
+        Optional<User> checkForUser = repository.findById(id);
+
+        if (checkForUser.isEmpty()) {
+            throw new UserNotFound("User does not exist, therefore not updated");
+        }
+
+        User foundUser = checkForUser.get();
+
+        for (String k : userMap.keySet()) {
+            switch (k) {
+                case "fName":
+                    foundUser.setfName((String) userMap.get(k));
+                    break;
+                case "lName":
+                    foundUser.setlName((String) userMap.get(k));
+                    break;
+                case "mI":
+                    foundUser.setmI((String) userMap.get(k));
+                    break;
+                case "dodId":
+                    foundUser.setDodId((String) userMap.get(k));
+                    break;
+                case "rank":
+                    foundUser.setRank((String) userMap.get(k));
+                    break;
+                case "dob":
+                    foundUser.setDob(LocalDate.parse(userMap.get(k).toString()));
+                    break;
+                default:
+                    break;
+            }
+        }
+
+        this.repository.save(foundUser);
+        return new ResponseEntity<>(String.format("User with id %d updated.", id), HttpStatus.OK);
+    }
 }
 
 

@@ -5,6 +5,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
+import java.util.Map;
 
 @RestController
 @CrossOrigin
@@ -22,7 +23,7 @@ public class UserController {
         return userService.getsOneUser(id);
     }
 
-    @PostMapping ("/create_user")
+    @PostMapping ("/user")
     public ResponseEntity<String> postsOneUser(@RequestBody User user) {
         return userService.postOneUser (user);
     }
@@ -30,5 +31,10 @@ public class UserController {
     @PostMapping ("/login")
     public ResponseEntity<Object> authenticate(@RequestBody HashMap<String,String> userInfo) {
         return userService.authenticateUser (userInfo);
+    }
+
+    @PatchMapping("/user/{id}")
+    public ResponseEntity<String> updateUserById(@PathVariable Long id, @RequestBody Map<String, Object> userMap) throws UserNotFound {
+        return userService.updateUser(id, userMap);
     }
 }
