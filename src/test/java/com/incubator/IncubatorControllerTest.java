@@ -59,7 +59,7 @@ public class IncubatorControllerTest {
 
         this.incubatorRepository.save(testApplication);
 
-        this.mvc.perform(get("/"))
+                this.mvc.perform(get("/"))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$[0].fName", is("Joe")))
                 .andExpect(jsonPath("$[0].lName", is("Star")))
@@ -153,7 +153,7 @@ public class IncubatorControllerTest {
                 .andExpect(jsonPath("$.dob", is("1980-09-10")))
                 .andExpect(jsonPath("$.lastACFT", is("2022-05-10")))
                 .andExpect(jsonPath("$.acftScore", is(478)))
-                .andExpect(jsonPath("$.weight", is (160f)));
+                .andExpect(jsonPath("$.weight", is (160.0)));
 
         this.mvc.perform(patch("/14")
                         .contentType(MediaType.APPLICATION_JSON)

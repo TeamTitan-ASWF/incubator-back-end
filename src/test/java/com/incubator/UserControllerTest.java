@@ -39,7 +39,7 @@ public class UserControllerTest {
     public void createUserTest() throws Exception {
         ObjectMapper mapper = new ObjectMapper();
         User testUser = new User("CaptainAmerica","Iloveamerica");
-        MockHttpServletRequestBuilder requestBuilder = post("/create_user").contentType(MediaType.APPLICATION_JSON)
+        MockHttpServletRequestBuilder requestBuilder = post("/user").contentType(MediaType.APPLICATION_JSON)
                 .content(mapper.writeValueAsString(testUser));
         this.mvc.perform(requestBuilder).andExpect(content().string("User created"));
     }
