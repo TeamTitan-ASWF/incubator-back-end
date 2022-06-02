@@ -28,11 +28,7 @@ public class UserController {
     }
 
     @PostMapping ("/login")
-    public ResponseEntity<String> authenticate(@RequestBody HashMap<String,String> userInfo) {
+    public ResponseEntity<Object> authenticate(@RequestBody HashMap<String,String> userInfo) {
         return userService.authenticateUser (userInfo);
     }
-
-
-
-
 }

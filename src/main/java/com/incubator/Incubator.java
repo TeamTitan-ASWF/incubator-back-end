@@ -9,13 +9,8 @@ import java.time.LocalDate;
 import java.util.Set;
 
 @Entity
-@Table (name = "incubators")
+@Table(name = "incubators")
 public class Incubator {
-
-
-
-
-
 
     @ManyToOne
     private User user;
@@ -27,21 +22,22 @@ public class Incubator {
     public void setUser(User user) {
         this.user = user;
     }
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private  String fName;
-    private  String lName;
+    private String fName;
+    private String lName;
     private String mI;
-    private  String dodId;
-    private  String rank;
+    private String dodId;
+    private String rank;
     @JsonFormat(pattern = "yyyy-MM-dd", timezone = "America/Chicago")
     private LocalDate dob;
     @JsonFormat(pattern = "yyyy-MM-dd", timezone = "America/Chicago")
     private LocalDate lastACFT;
     private Integer acftScore;
     private Integer height;
-    private  Float weight;
+    private Float weight;
     @Column(length = 3000)
     private String techBG;
     @Column(length = 3000)
