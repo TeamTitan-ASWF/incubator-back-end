@@ -95,10 +95,10 @@ public class IncubatorService {
                     foundIncubator.setAcftScore((Integer) applicationMap.get(k));
                     break;
                 case "height":
-                    foundIncubator.setHeight((Integer) applicationMap.get(k));
+                    foundIncubator.setHeight(String.valueOf(applicationMap.get(k)));
                     break;
                 case "weight":
-                    foundIncubator.setWeight((Float) applicationMap.get(k));
+                    foundIncubator.setWeight(String.valueOf(applicationMap.get(k)));
                     break;
                 case "techBG":
                     foundIncubator.setTechBG((String) applicationMap.get(k));
