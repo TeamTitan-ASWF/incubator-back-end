@@ -167,6 +167,10 @@ public class Incubator {
         return height;
     }
 
+    public void setHeight(String height) {
+        this.height = Integer.valueOf(height);
+    }
+
     public void setHeight(Integer height) {
         this.height = height;
     }
@@ -177,6 +181,10 @@ public class Incubator {
 
     public void setWeight(Float weight) {
         this.weight = weight;
+    }
+
+    public void setWeight(String weight) {
+        this.weight = Float.parseFloat(weight);
     }
 
     public String getTechBG() {

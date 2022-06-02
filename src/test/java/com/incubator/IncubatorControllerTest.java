@@ -139,7 +139,8 @@ public class IncubatorControllerTest {
                 .content("""
                         {
                             "fName":"Joseph",
-                            "lastACFT":"2022-05-10"
+                            "lastACFT":"2022-05-10",
+                            "weight": 160
                         }
                         """)
         )
@@ -151,7 +152,8 @@ public class IncubatorControllerTest {
                 .andExpect(jsonPath("$.rank", is("E-4")))
                 .andExpect(jsonPath("$.dob", is("1980-09-10")))
                 .andExpect(jsonPath("$.lastACFT", is("2022-05-10")))
-                .andExpect(jsonPath("$.acftScore", is(478)));
+                .andExpect(jsonPath("$.acftScore", is(478)))
+                .andExpect(jsonPath("$.weight", is (160f)));
 
         this.mvc.perform(patch("/14")
                         .contentType(MediaType.APPLICATION_JSON)
