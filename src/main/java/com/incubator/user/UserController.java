@@ -25,7 +25,7 @@ public class UserController {
     }
 
     @PostMapping ("/user")
-    public ResponseEntity<String> postsOneUser(@RequestBody User user) {
+    public ResponseEntity<String> postsOneUser(@RequestBody User user) throws UserNotFound {
         return userService.postOneUser (user);
     }
 

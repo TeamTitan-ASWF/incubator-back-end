@@ -19,9 +19,10 @@ public class UserService {
         this.repository = repository;
     }
 
-    public ResponseEntity<String> postOneUser(User user) {
+    public ResponseEntity<String> postOneUser(User user) throws UserNotFound {
         Optional<User> realUser = repository.findByUserName(user.getUserName());
         if (realUser.isPresent()) {
+           // throw new UserNotFound("Uh");
             return new ResponseEntity<>("User name already taken", HttpStatus.NOT_ACCEPTABLE);
 
         }
