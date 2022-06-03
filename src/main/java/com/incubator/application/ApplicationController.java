@@ -26,8 +26,8 @@ public class ApplicationController {
     }
 
     @PostMapping("/multiple")
-    public ResponseEntity<Object> createsApplications (@RequestBody Iterable<Application> incubatorList) {
-        return applicationService.createApplications(incubatorList);
+    public ResponseEntity<Object> createsApplications (@RequestBody Iterable<Application> applicationList) {
+        return applicationService.createApplications(applicationList);
     }
 
     @GetMapping

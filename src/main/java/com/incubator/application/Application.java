@@ -14,14 +14,6 @@ public class Application {
     @ManyToOne
     private User user;
 
-    public User getUser() {
-        return user;
-    }
-
-    public void setUser(User user) {
-        this.user = user;
-    }
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -105,6 +97,14 @@ public class Application {
     public Application() {
     }
 
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+
     public Long getId() {
         return id;
     }
@@ -112,7 +112,6 @@ public class Application {
     public void setId(Long id) {
         this.id = id;
     }
-
 
     public String getfName() {
         return fName;

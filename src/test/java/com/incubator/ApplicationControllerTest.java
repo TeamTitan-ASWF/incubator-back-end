@@ -32,13 +32,22 @@ public class ApplicationControllerTest {
     @Test
     @Transactional
     @Rollback
-    public void createApplicationTest() throws Exception {
+    public v throws Exception {
         this.mvc.perform(post("/")
                 .contentType(MediaType.APPLICATION_JSON)
-                .content("{\"fName\":\"Joe\", \"lName\":\"Star\", \"mI\":\"n\", " +
-                        "\"dodId\":\"1234567890\", \"rank\":\"E-4\", \"dob\": \"1980-09-10\", " +
-                        "\"lastACFT\": \"2022-05-19\", \"acftScore\": 477}")
-        )
+                .content("""
+                        {
+                            "fName": "Joe",
+                            "lName": "Star",
+                            "mI":"n",
+                            "dodId":"1234567890",
+                            "rank":"E-4",
+                            "dob": "1980-09-10",
+                            "lastACFT": "2022-05-19",
+                            "acftScore": 477,
+                            "user": 10
+                        }
+                        """))
                 .andExpect(status().isCreated())
                 .andExpect(jsonPath("$.fName", is("Joe")))
                 .andExpect(jsonPath("$.lName", is("Star")))
@@ -48,7 +57,6 @@ public class ApplicationControllerTest {
                 .andExpect(jsonPath("$.dob", is("1980-09-10")))
                 .andExpect(jsonPath("$.lastACFT", is("2022-05-19")))
                 .andExpect(jsonPath("$.acftScore", is(477)));
-
     }
 
     @Test
@@ -165,30 +173,28 @@ public class ApplicationControllerTest {
     }
 
 
-//    @Test
-//    @Transactional
-//    @Rollback
-//    public void updateWithInvalidStatusGivesError() throws Exception {
-//        Incubator testApplication = new Incubator("Joe", "Star", "n",
-//                "1234567890", "E-4", LocalDate.of(1980, 9, 10),
-//                LocalDate.of(2022, 05, 19), 478);
-//
-//        this.incubatorRepository.save(testApplication);
-//
-//        Long id = testApplication.getId();
-//        String path = "/" + id + "";
-//
-//        this.mvc.perform(patch(path)
-//                        .contentType(MediaType.APPLICATION_JSON)
-//                        .content("""
-//                        {
-//                            "status":"Joseph"
-//                        }
-//                        """)
-//                )
-//                .andExpect(status().isBadRequest())
-//                .andExpect(content().string("Invalid Status submitted, needs to be: pending, accepted, or rejected"));
-//    }
+    @Test
+    @Transactional
+    @Rollback
+    public void updateWithInvalidStatusGivesError() throws Exception {
+        Application testApplication = new Application("Joe", "Star", "n",
+                "1234567890", "E-4", LocalDate.of(1980, 9, 10),
+                LocalDate.of(2022, 05, 19), 478);
 
-    // unnecessary comment
+        this.applicationRepository.save(testApplication);
+
+        Long id = testApplication.getId();
+        String path = "/" + id + "";
+
+        this.mvc.perform(patch(path)
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content("""
+                        {
+                            "status":"Joseph"
+                        }
+                        """)
+                )
+                .andExpect(status().isBadRequest())
+                .andExpect(content().string("Invalid Status submitted, needs to be: pending, approved, or denied and you used: Joseph"));
+    }
 }
