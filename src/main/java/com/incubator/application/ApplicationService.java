@@ -1,13 +1,16 @@
 package com.incubator.application;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.incubator.exceptions.ApplicationNotFound;
 import com.incubator.exceptions.InvalidStatus;
+import com.incubator.user.UserRepository;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDate;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
@@ -16,14 +19,21 @@ import java.util.Optional;
 public class ApplicationService {
 
     private final ApplicationRepository repository;
+    private final UserRepository userRepo;
 
-    public ApplicationService(ApplicationRepository repository) {
+    public ApplicationService(ApplicationRepository repository, UserRepository userRepo) {
         this.repository = repository;
+        this.userRepo = userRepo;
     }
 
-    public ResponseEntity<Object> createApplication(Application application) {
-        repository.save(application);
-        return new ResponseEntity<>(application, HttpStatus.CREATED);
+    public ResponseEntity<Object> createApplication(HashMap<String, Object> userMap) {
+        ObjectMapper mapper = new ObjectMapper().findAndRegisterModules();
+        userMap.put("user", userRepo.findById(Long.valueOf(String.valueOf(userMap.get("user")))));
+        userMap.put("dob", LocalDate.parse(userMap.get("dob").toString()));
+        Application incubator = mapper.convertValue(userMap, Application.class);
+        repository.save(incubator);
+        return new ResponseEntity<>(incubator, HttpStatus.CREATED);
+
     }
 
     public ResponseEntity<Object> createApplications(Iterable<Application> incubatorList) {

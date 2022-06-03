@@ -5,6 +5,7 @@ import com.incubator.exceptions.InvalidStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -19,8 +20,9 @@ public class ApplicationController {
     }
 
     @PostMapping
-    public ResponseEntity<Object> createsApplication (@RequestBody Application application) {
-        return applicationService.createApplication (application);
+    public ResponseEntity<Object> createsApplication (@RequestBody HashMap<String, Object> userMap) {
+        return applicationService.createApplication(userMap);
+
     }
 
     @PostMapping("/multiple")
