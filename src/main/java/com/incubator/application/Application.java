@@ -1,16 +1,15 @@
-package com.incubator;
+package com.incubator.application;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.incubator.exceptions.InvalidStatus;
 import com.incubator.user.User;
 
 import javax.persistence.*;
 import java.time.LocalDate;
-import java.util.Set;
 
 @Entity
 @Table(name = "incubators")
-public class Incubator {
+public class Application {
 
     @ManyToOne
     private User user;
@@ -46,12 +45,24 @@ public class Incubator {
     private String referenceRank;
     private String referenceEmail;
     private String referencePhone;
+
+    private String referenceName2;
+    private String referenceRank2;
+    private String referenceEmail2;
+    private String referencePhone2;
+
+    private String referenceName3;
+    private String referenceRank3;
+    private String referenceEmail3;
+    private String referencePhone3;
+
     private String status = "pending";
     @JsonFormat(pattern = "yyyy-MM-dd", timezone = "America/Chicago")
     private LocalDate dateSubmitted = LocalDate.now();
 
-    public Incubator(String fName, String lName, String mI, String dodId, String rank, LocalDate dob, LocalDate lastACFT, Integer acftScore, Integer height, Float weight, String techBG, String motivation, String referenceName, String referenceRank, String referenceEmail, String referencePhone, String status, LocalDate dateSubmitted) {
-
+    public Application(User user, Long id, String fName, String lName, String mI, String dodId, String rank, LocalDate dob, LocalDate lastACFT, Integer acftScore, Integer height, Float weight, String techBG, String motivation, String referenceName, String referenceRank, String referenceEmail, String referencePhone, String referenceName2, String referenceRank2, String referenceEmail2, String referencePhone2, String referenceName3, String referenceRank3, String referenceEmail3, String referencePhone3, String status, LocalDate dateSubmitted) {
+        this.user = user;
+        this.id = id;
         this.fName = fName;
         this.lName = lName;
         this.mI = mI;
@@ -68,11 +79,19 @@ public class Incubator {
         this.referenceRank = referenceRank;
         this.referenceEmail = referenceEmail;
         this.referencePhone = referencePhone;
+        this.referenceName2 = referenceName2;
+        this.referenceRank2 = referenceRank2;
+        this.referenceEmail2 = referenceEmail2;
+        this.referencePhone2 = referencePhone2;
+        this.referenceName3 = referenceName3;
+        this.referenceRank3 = referenceRank3;
+        this.referenceEmail3 = referenceEmail3;
+        this.referencePhone3 = referencePhone3;
         this.status = status;
         this.dateSubmitted = dateSubmitted;
     }
 
-    public Incubator(String fName, String lName, String mI, String dodId, String rank, LocalDate dob, LocalDate lastACFT, Integer acftScore) {
+    public Application(String fName, String lName, String mI, String dodId, String rank, LocalDate dob, LocalDate lastACFT, Integer acftScore) {
         this.fName = fName;
         this.lName = lName;
         this.mI = mI;
@@ -83,7 +102,7 @@ public class Incubator {
         this.acftScore = acftScore;
     }
 
-    public Incubator() {
+    public Application() {
     }
 
     public Long getId() {
@@ -249,5 +268,69 @@ public class Incubator {
 
     public void setDateSubmitted(LocalDate dateSubmitted) {
         this.dateSubmitted = dateSubmitted;
+    }
+
+    public String getReferenceName2() {
+        return referenceName2;
+    }
+
+    public void setReferenceName2(String referenceName2) {
+        this.referenceName2 = referenceName2;
+    }
+
+    public String getReferenceRank2() {
+        return referenceRank2;
+    }
+
+    public void setReferenceRank2(String referenceRank2) {
+        this.referenceRank2 = referenceRank2;
+    }
+
+    public String getReferenceEmail2() {
+        return referenceEmail2;
+    }
+
+    public void setReferenceEmail2(String referenceEmail2) {
+        this.referenceEmail2 = referenceEmail2;
+    }
+
+    public String getReferencePhone2() {
+        return referencePhone2;
+    }
+
+    public void setReferencePhone2(String referencePhone2) {
+        this.referencePhone2 = referencePhone2;
+    }
+
+    public String getReferenceName3() {
+        return referenceName3;
+    }
+
+    public void setReferenceName3(String referenceName3) {
+        this.referenceName3 = referenceName3;
+    }
+
+    public String getReferenceRank3() {
+        return referenceRank3;
+    }
+
+    public void setReferenceRank3(String referenceRank3) {
+        this.referenceRank3 = referenceRank3;
+    }
+
+    public String getReferenceEmail3() {
+        return referenceEmail3;
+    }
+
+    public void setReferenceEmail3(String referenceEmail3) {
+        this.referenceEmail3 = referenceEmail3;
+    }
+
+    public String getReferencePhone3() {
+        return referencePhone3;
+    }
+
+    public void setReferencePhone3(String referencePhone3) {
+        this.referencePhone3 = referencePhone3;
     }
 }

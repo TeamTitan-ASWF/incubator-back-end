@@ -1,10 +1,10 @@
-package com.incubator;
+package com.incubator.application;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 
 import java.time.LocalDate;
 
-public class IncubatorList {
+public class ApplicationList {
     private Long id;
     private  String fName;
     private  String lName;
@@ -17,7 +17,7 @@ public class IncubatorList {
     @JsonFormat(pattern = "yyyy-MM-dd", timezone = "America/Chicago")
     private LocalDate dateSubmitted;
 
-    public IncubatorList(Long id, String fName, String lName, String mI, String rank, LocalDate dob, String status, LocalDate dateSubmitted) {
+    public ApplicationList(Long id, String fName, String lName, String mI, String rank, LocalDate dob, String status, LocalDate dateSubmitted) {
         this.id = id;
         this.fName = fName;
         this.lName = lName;

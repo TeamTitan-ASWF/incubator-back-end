@@ -1,5 +1,6 @@
 package com.incubator.user;
 
+import com.incubator.exceptions.UserNotFound;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
