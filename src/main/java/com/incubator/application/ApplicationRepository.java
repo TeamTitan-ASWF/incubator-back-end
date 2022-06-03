@@ -13,4 +13,8 @@ public interface ApplicationRepository extends JpaRepository<Application, Long> 
     public List<ApplicationList> getReviewerApplicationList();
 
     public Optional<Application> findFirstByDodIdEquals(String dodId);
+
+    public Optional<Application> findFirstByUserIdEquals(Long userId);
+
+    public List<Application> findByUserIdEquals(Long userId);
 }

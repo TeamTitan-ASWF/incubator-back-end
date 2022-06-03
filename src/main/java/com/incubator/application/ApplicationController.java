@@ -5,6 +5,7 @@ import com.incubator.exceptions.InvalidStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.Map;
 
 @RestController
@@ -52,6 +53,8 @@ public class ApplicationController {
         return applicationService.updateApplication(id, applicationMap);
     }
 
-
-
+    @GetMapping("/app/userid/{id}")
+    public ResponseEntity<List<Object>> getApplicationsByUser(@PathVariable Long id) throws ApplicationNotFound {
+        return applicationService.getApplicationsByUser(id);
+    }
 }

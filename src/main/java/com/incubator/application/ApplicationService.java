@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDate;
+import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
@@ -165,5 +166,15 @@ public class ApplicationService {
         }
 
         return new ResponseEntity<>(foundIncubator.get(), HttpStatus.OK);
+    }
+
+    public ResponseEntity<List<Object>> getApplicationsByUser(Long userId) throws ApplicationNotFound {
+        List<Application> foundIncubator = repository.findByUserIdEquals(userId);
+
+        if (foundIncubator.isEmpty()) {
+            throw new ApplicationNotFound("No application found with user id of " + userId);
+        }
+
+        return new ResponseEntity (foundIncubator, HttpStatus.OK);
     }
 }
