@@ -1,6 +1,5 @@
-package com.incubator;
+package com.incubator.exceptions;
 
-import com.incubator.user.UserNotFound;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;
@@ -8,8 +7,8 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 
 @ControllerAdvice
 public class ApplicationErrorHandler {
-    @ExceptionHandler(IncubatorNotFound.class)
-    public ResponseEntity<String> handleIncubatorNotFound(IncubatorNotFound e) {
+    @ExceptionHandler(ApplicationNotFound.class)
+    public ResponseEntity<String> handleIncubatorNotFound(ApplicationNotFound e) {
         return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
     }
 

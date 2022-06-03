@@ -2,7 +2,7 @@ package com.incubator.user;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.incubator.Incubator;
+import com.incubator.application.Application;
 
 import javax.persistence.*;
 import java.time.LocalDate;
@@ -38,13 +38,13 @@ public class User {
     }
 
     @OneToMany
-    public Set<Incubator> applications;
+    public Set<Application> applications;
 
-    public Set<Incubator> getApplications() {
+    public Set<Application> getApplications() {
         return applications;
     }
 
-    public void setApplications(Set<Incubator> applications) {
+    public void setApplications(Set<Application> applications) {
         this.applications = applications;
     }
 

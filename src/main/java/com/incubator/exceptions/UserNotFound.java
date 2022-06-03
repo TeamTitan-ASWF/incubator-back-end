@@ -1,4 +1,4 @@
-package com.incubator.user;
+package com.incubator.exceptions;
 
 public class UserNotFound extends Exception {
     public UserNotFound(String message) {

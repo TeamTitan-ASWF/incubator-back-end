@@ -1,5 +1,7 @@
 package com.incubator;
 
+import com.incubator.application.Application;
+import com.incubator.application.ApplicationRepository;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
@@ -19,13 +21,13 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 @SpringBootTest
 @AutoConfigureMockMvc
-public class IncubatorControllerTest {
+public class ApplicationControllerTest {
 
     @Autowired
     MockMvc mvc;
 
     @Autowired
-    IncubatorRepository incubatorRepository;
+    ApplicationRepository applicationRepository;
 
     @Test
     @Transactional
@@ -53,11 +55,11 @@ public class IncubatorControllerTest {
     @Transactional
     @Rollback
     public void readAllApplicationsTest() throws Exception {
-        Incubator testApplication = new Incubator("Joe", "Star", "n",
+        Application testApplication = new Application("Joe", "Star", "n",
                 "1234567890", "E-4", LocalDate.of(1980, 9, 10),
                 LocalDate.of(2022, 05, 19), 478);
 
-        this.incubatorRepository.save(testApplication);
+        this.applicationRepository.save(testApplication);
 
                 this.mvc.perform(get("/"))
                 .andExpect(status().isOk())
@@ -71,11 +73,11 @@ public class IncubatorControllerTest {
     @Transactional
     @Rollback
     public void deleteApplicationsTest() throws Exception {
-        Incubator testApplication = new Incubator("Joe", "Star", "n",
+        Application testApplication = new Application("Joe", "Star", "n",
                 "1234567890", "E-4", LocalDate.of(1980, 9, 10),
                 LocalDate.of(2022, 05, 19), 478);
 
-        this.incubatorRepository.save(testApplication);
+        this.applicationRepository.save(testApplication);
 
         Long id = testApplication.getId();
         String path = "/" + id + "";
@@ -95,11 +97,11 @@ public class IncubatorControllerTest {
     @Transactional
     @Rollback
     public void readSpecificApplicationsTest() throws Exception {
-        Incubator testApplication = new Incubator("Joe", "Star", "n",
+        Application testApplication = new Application("Joe", "Star", "n",
                 "1234567890", "E-4", LocalDate.of(1980, 9, 10),
                 LocalDate.of(2022, 05, 19), 478);
 
-        this.incubatorRepository.save(testApplication);
+        this.applicationRepository.save(testApplication);
 
         Long id = testApplication.getId();
         String path = "/" + id + "";
@@ -125,11 +127,11 @@ public class IncubatorControllerTest {
     @Transactional
     @Rollback
     public void updateApplicationsTest() throws Exception {
-        Incubator testApplication = new Incubator("Joe", "Star", "n",
+        Application testApplication = new Application("Joe", "Star", "n",
                 "1234567890", "E-4", LocalDate.of(1980, 9, 10),
                 LocalDate.of(2022, 05, 19), 478);
 
-        this.incubatorRepository.save(testApplication);
+        this.applicationRepository.save(testApplication);
 
         Long id = testApplication.getId();
         String path = "/" + id + "";
