@@ -34,18 +34,26 @@ public class UserService {
         return new ResponseEntity<>(repository.findById(id).get(), HttpStatus.OK);
     }
 
-    public ResponseEntity<Object> authenticateUser(HashMap<String, String> userInfo) {
-        Optional<User> realUser = repository.findByUserName(userInfo.get("userName"));
-        if (realUser.isEmpty()) {
-            return new ResponseEntity<>("User name invalid", HttpStatus.NOT_FOUND);
-        } else {
-            if (realUser.get().getPassword().equals(userInfo.get("password"))) {
-                return new ResponseEntity<>(realUser.get(), HttpStatus.ACCEPTED);
-            } else {
-                return new ResponseEntity<>("Not Authenticated", HttpStatus.NOT_ACCEPTABLE);
-            }
-        }
+//    public ResponseEntity<Object> authenticateUser(HashMap<String, String> userInfo) {
+//        Optional<User> realUser = repository.findByUserName(userInfo.get("userName"));
+//        if (realUser.isEmpty()) {
+//            return new ResponseEntity<>("User name invalid", HttpStatus.NOT_FOUND);
+//        } else {
+//            if (realUser.get().getPassword().equals(userInfo.get("password"))) {
+//                return new ResponseEntity<>(realUser.get(), HttpStatus.ACCEPTED);
+//            } else {
+//                return new ResponseEntity<>("Not Authenticated", HttpStatus.NOT_ACCEPTABLE);
+//            }
+//        }
+//    }
 
+    public ResponseEntity<Object> authenticateUser(User user) {
+        Optional<User> realUser = repository.findByUserName(user.getUserName());
+        if (realUser.isEmpty()) {
+            return new ResponseEntity<>(repository.save(user), HttpStatus.CREATED);
+        } else {
+            return new ResponseEntity<>(realUser.get(), HttpStatus.ACCEPTED);
+        }
     }
 
     public ResponseEntity<String> updateUser(Long id, Map<String, Object> userMap) throws UserNotFound {

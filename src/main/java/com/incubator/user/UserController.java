@@ -29,9 +29,14 @@ public class UserController {
         return userService.postOneUser (user);
     }
 
+//    @PostMapping ("/login")
+//    public ResponseEntity<Object> authenticate(@RequestBody HashMap<String,String> userInfo) {
+//        return userService.authenticateUser (userInfo);
+//    }
+
     @PostMapping ("/login")
-    public ResponseEntity<Object> authenticate(@RequestBody HashMap<String,String> userInfo) {
-        return userService.authenticateUser (userInfo);
+    public ResponseEntity<Object> authenticate(@RequestBody User user) {
+        return userService.authenticateUser (user);
     }
 
     @PatchMapping("/user/{id}")
