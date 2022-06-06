@@ -28,17 +28,20 @@ public class ApplicationService {
 
     public ResponseEntity<Object> createApplication(HashMap<String, Object> userMap) {
         ObjectMapper mapper = new ObjectMapper().findAndRegisterModules();
+
+        // JE - may be some problems here with these lines
         userMap.put("user", userRepo.findById(Long.valueOf(String.valueOf(userMap.get("user")))));
         userMap.put("dob", LocalDate.parse(userMap.get("dob").toString()));
-        Application incubator = mapper.convertValue(userMap, Application.class);
-        repository.save(incubator);
-        return new ResponseEntity<>(incubator, HttpStatus.CREATED);
+
+        Application application = mapper.convertValue(userMap, Application.class);
+        repository.save(application);
+        return new ResponseEntity<>(application, HttpStatus.CREATED);
 
     }
 
-    public ResponseEntity<Object> createApplications(Iterable<Application> incubatorList) {
-        repository.saveAll(incubatorList);
-        return new ResponseEntity<>(incubatorList, HttpStatus.CREATED);
+    public ResponseEntity<Object> createApplications(Iterable<Application> applicationList) {
+        repository.saveAll(applicationList);
+        return new ResponseEntity<>(applicationList, HttpStatus.CREATED);
     }
 
     public ResponseEntity<Object> readApplications() {
@@ -46,9 +49,9 @@ public class ApplicationService {
     }
 
     public ResponseEntity<Object> deleteApplication(Long id) throws ApplicationNotFound {
-        Optional<Application> foundIncubator = repository.findById(id);
+        Optional<Application> foundApplication = repository.findById(id);
 
-        if (foundIncubator.isEmpty()) {
+        if (foundApplication.isEmpty()) {
             throw new ApplicationNotFound("Application does not exist, therefore not deleted");
         }
 
@@ -58,23 +61,23 @@ public class ApplicationService {
     }
 
     public ResponseEntity<Object> readSpecificApplication(Long id) throws ApplicationNotFound {
-        Optional<Application> foundIncubator = repository.findById(id);
+        Optional<Application> foundApplication = repository.findById(id);
 
-        if (foundIncubator.isEmpty()) {
+        if (foundApplication.isEmpty()) {
             throw new ApplicationNotFound("Application does not exist");
         }
 
-        return new ResponseEntity<>(foundIncubator.get(), HttpStatus.OK);
+        return new ResponseEntity<>(foundApplication.get(), HttpStatus.OK);
     }
 
     public ResponseEntity<Object> updateApplication(Long id, Map<String, Object> applicationMap) throws ApplicationNotFound, InvalidStatus {
-        Optional<Application> checkForIncubator = repository.findById(id);
+        Optional<Application> checkForApplication = repository.findById(id);
 
-        if (checkForIncubator.isEmpty()) {
+        if (checkForApplication.isEmpty()) {
             throw new ApplicationNotFound("Application does not exist, therefore not updated");
         }
 
-        Application foundApplication = checkForIncubator.get();
+        Application foundApplication = checkForApplication.get();
 
         boolean isInvalidStatus = false;
 
@@ -169,22 +172,22 @@ public class ApplicationService {
 
     @Transactional
     public ResponseEntity<Application> readApplicationByDodId(String dodId) throws ApplicationNotFound {
-        Optional<Application> foundIncubator = repository.findFirstByDodIdEquals(dodId);
+        Optional<Application> foundApplication = repository.findFirstByDodIdEquals(dodId);
 
-        if (foundIncubator.isEmpty()) {
+        if (foundApplication.isEmpty()) {
             throw new ApplicationNotFound("Application does not exist, please check that your DODID is correct.");
         }
 
-        return new ResponseEntity<>(foundIncubator.get(), HttpStatus.OK);
+        return new ResponseEntity<>(foundApplication.get(), HttpStatus.OK);
     }
 
     public ResponseEntity<List<Object>> getApplicationsByUser(Long userId) throws ApplicationNotFound {
-        List<Application> foundIncubator = repository.findByUserIdEquals(userId);
+        List<Application> foundApplication = repository.findByUserIdEquals(userId);
 
-        if (foundIncubator.isEmpty()) {
+        if (foundApplication.isEmpty()) {
             throw new ApplicationNotFound("No application found with user id of " + userId);
         }
 
-        return new ResponseEntity (foundIncubator, HttpStatus.OK);
+        return new ResponseEntity (foundApplication, HttpStatus.OK);
     }
 }
