@@ -34,9 +34,25 @@ public class UserController {
 //        return userService.authenticateUser (userInfo);
 //    }
 
-    @PostMapping ("/login")
-    public ResponseEntity<Object> authenticate(@RequestBody User user) {
-        return userService.authenticateUser (user);
+//    @PostMapping ("/login")
+//    public ResponseEntity<Object> authenticate(@RequestBody User user) {
+//        return userService.authenticateUser (user);
+//    }
+//@PostMapping ("/login")
+//    public ResponseEntity<Object> authenticate(@RequestBody String user) throws Exception {
+//        return userService.authenticateUser (user);
+//    }
+
+
+    @RequestMapping(method = RequestMethod.POST, value = "/login", params = {"user"})
+    public ResponseEntity<Object> authenticate(@RequestParam(value = "user") String user) throws Exception {
+        return userService.authenticateUser(user);
+    }
+
+
+    @RequestMapping(method = RequestMethod.POST, value = "/login", params = {"userName", "password"})
+    public ResponseEntity<Object> authenticate(@RequestParam(value = "userName") String userName, @RequestParam(value = "password") String password) throws Exception {
+        return userService.authenticateUserFromForm (userName, password);
     }
 
     @PatchMapping("/user/{id}")
