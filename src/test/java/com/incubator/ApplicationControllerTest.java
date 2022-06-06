@@ -32,7 +32,7 @@ public class ApplicationControllerTest {
     @Test
     @Transactional
     @Rollback
-    public void createApplication() throws Exception {
+    public void createApplicationTest() throws Exception {
         this.mvc.perform(post("/")
                 .contentType(MediaType.APPLICATION_JSON)
                 .content("""
@@ -195,6 +195,6 @@ public class ApplicationControllerTest {
                         """)
                 )
                 .andExpect(status().isBadRequest())
-                .andExpect(content().string("Invalid Status submitted, needs to be: pending, approved, or denied and you used: Joseph"));
+                .andExpect(content().string("Invalid Status submitted, needs to be: pending, approved, denied, or rescinded and you used: Joseph"));
     }
 }
