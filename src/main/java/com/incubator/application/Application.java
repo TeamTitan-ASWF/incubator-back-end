@@ -254,10 +254,10 @@ public class Application {
     }
 
     public void setStatus(String status) throws InvalidStatus {
-        if (status.equals("pending") || status.equals("approved") || status.equals("denied")) {
+        if (status.equals("pending") || status.equals("approved") || status.equals("denied") || status.equals("rescinded")) {
             this.status = status;
         } else {
-            throw new InvalidStatus("Invalid Status submitted, needs to be: pending, approved, or denied" + " and you used: " + status);
+            throw new InvalidStatus("Invalid Status submitted, needs to be: pending, approved, denied, or rescinded" + " and you used: " + status);
         }
     }
 

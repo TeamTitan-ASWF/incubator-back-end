@@ -32,7 +32,7 @@ public class ApplicationControllerTest {
     @Test
     @Transactional
     @Rollback
-    public v throws Exception {
+    public void createApplicationTest() throws Exception {
         this.mvc.perform(post("/")
                 .contentType(MediaType.APPLICATION_JSON)
                 .content("""
