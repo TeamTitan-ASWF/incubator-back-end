@@ -3,6 +3,8 @@ package com.incubator.user;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.incubator.application.Application;
+import com.incubator.encryption.AttributeEncryptor;
+import org.hibernate.annotations.ColumnTransformer;
 
 import javax.persistence.*;
 import java.time.LocalDate;
@@ -17,6 +19,11 @@ public class User {
     private String userName;
 
     @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
+    @Convert(converter = AttributeEncryptor.class)
+//    @ColumnTransformer(
+//            read = "PGP_SYM_DECRYPT(password, 'secret-key-12345')",
+//            write = "PGP_SYM_ENCRYPT (?, 'secret-key-12345')"
+//    )
     private String password;
     private Boolean isReviewer = false;
 
