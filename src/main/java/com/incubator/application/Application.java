@@ -48,7 +48,7 @@ public class Application {
     private String referenceEmail3;
     private String referencePhone3;
 
-    private String status = "pending";
+    private String status = "in progress";
     @JsonFormat(pattern = "yyyy-MM-dd", timezone = "America/Chicago")
     private LocalDate dateSubmitted = LocalDate.now();
 
@@ -254,10 +254,10 @@ public class Application {
     }
 
     public void setStatus(String status) throws InvalidStatus {
-        if (status.equals("pending") || status.equals("approved") || status.equals("denied") || status.equals("rescinded")) {
+        if (status.equals("pending") || status.equals("approved") || status.equals("denied") || status.equals("rescinded")|| status.equals("in progress")) {
             this.status = status;
         } else {
-            throw new InvalidStatus("Invalid Status submitted, needs to be: pending, approved, denied, or rescinded" + " and you used: " + status);
+            throw new InvalidStatus("Invalid Status submitted, needs to be: pending, approved, denied, rescinded, or in progress" + " and you used: " + status);
         }
     }
 
