@@ -50,7 +50,7 @@ public class UserService {
             return new ResponseEntity<>("User name invalid", HttpStatus.NOT_FOUND);
         } else {
             if (realUser.get().getPassword().equals(password)) {
-                return new ResponseEntity<>(realUser.get(), HttpStatus.ACCEPTED);
+                return new ResponseEntity<>(realUser.get(), HttpStatus.OK);
             } else {
                 return new ResponseEntity<>("Not Authenticated", HttpStatus.NOT_ACCEPTABLE);
             }
@@ -65,13 +65,9 @@ public class UserService {
         String payload = new String(decoder.decode(chunks[1]));
         JsonNode payloadMap = mapper.readTree(payload);
 
-
         String email = payloadMap.get("email").asText();
         String fName = payloadMap.get("given_name").asText();
         String lName = payloadMap.get("family_name").asText();
-
-
-
 
         Optional<User> realUser = repository.findByUserName(email);
         if (realUser.isEmpty()) {
