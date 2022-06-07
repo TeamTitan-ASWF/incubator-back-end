@@ -38,6 +38,7 @@ public class User {
         this.userName = userName;
         this.fName = fName;
         this.lName = lName;
+        this.password = "asDdf;jkl45D345agjoiGGHAF782346873HKDD$%&*((&";
     }
 
     public User() {

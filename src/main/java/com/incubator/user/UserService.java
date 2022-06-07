@@ -9,9 +9,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 // tslint:disable-next-line
 import io.jsonwebtoken.SignatureAlgorithm;
-
-
-
 import javax.crypto.SecretKey;
 import javax.crypto.spec.SecretKeySpec;
 //import SignatureAlgorithm
@@ -20,16 +17,8 @@ import java.security.PublicKey;
 import java.security.spec.X509EncodedKeySpec;
 import java.time.LocalDate;
 import java.util.*;
-
 import static io.jsonwebtoken.SignatureAlgorithm.HS256;
 import static io.jsonwebtoken.SignatureAlgorithm.RS256;
-
-
-
-
-
-
-
 
 @Service
 public class UserService {
@@ -55,7 +44,7 @@ public class UserService {
         return new ResponseEntity<>(repository.findById(id).get(), HttpStatus.OK);
     }
 
-    public ResponseEntity<Object> authenticateUserFromForm(String userName, String password) {
+    public ResponseEntity<Object> authenticateUserFromForm(String userName, String password) throws Exception {
         Optional<User> realUser = repository.findByUserName(userName);
         if (realUser.isEmpty()) {
             return new ResponseEntity<>("User name invalid", HttpStatus.NOT_FOUND);
