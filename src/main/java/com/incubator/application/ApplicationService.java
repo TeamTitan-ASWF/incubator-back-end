@@ -165,13 +165,13 @@ public class ApplicationService {
         return new ResponseEntity<>(foundApplication, HttpStatus.OK);
     }
 
-    public ResponseEntity<List<Object>> getApplicationsByUser(Long userId) throws ApplicationNotFound {
+    public ResponseEntity<Object> getApplicationsByUser(Long userId) throws ApplicationNotFound {
         List<Application> foundApplication = repository.findByUserIdEquals(userId);
 
         if (foundApplication.isEmpty()) {
             throw new ApplicationNotFound("No application found with user id of " + userId);
         }
 
-        return new ResponseEntity (foundApplication, HttpStatus.OK);
+        return new ResponseEntity<>(foundApplication, HttpStatus.OK);
     }
 }

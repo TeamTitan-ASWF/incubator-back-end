@@ -50,7 +50,7 @@ public class ApplicationController {
     }
 
     @GetMapping("/app/userid/{id}")
-    public ResponseEntity<List<Object>> getApplicationsByUser(@PathVariable Long id) throws ApplicationNotFound {
+    public ResponseEntity<Object> getApplicationsByUser(@PathVariable Long id) throws ApplicationNotFound {
         return applicationService.getApplicationsByUser(id);
     }
 }

@@ -15,7 +15,8 @@ import java.util.Base64;
 public class AttributeEncryptor implements AttributeConverter<String, String> {
 
     private static final String AES = "AES";
-    private static final String SECRET = "ErenDidNothingWrong";
+    // SECRET must be 16 characters exactly including spaces
+    private static final String SECRET = "ErenDidNothinBad";
 
     private final Key key;
     private final Cipher cipher;
