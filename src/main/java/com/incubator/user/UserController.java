@@ -1,9 +1,7 @@
 package com.incubator.user;
 
-
 import com.incubator.exceptions.UserNotFound;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -11,11 +9,10 @@ import java.util.HashMap;
 import java.util.Map;
 
 @RestController
-@CrossOrigin
+@CrossOrigin(origins = {"https://cors-everywhere-me.herokuapp.com/http://ec2-18-216-140-13.us-east-2.compute.amazonaws.com:8080/", "http://localhost:3000/"})
 public class UserController {
 
     private final UserService userService;
-
 
     public UserController(UserService userService) {
         this.userService = userService;
@@ -41,27 +38,6 @@ public class UserController {
             return new ResponseEntity<>("Invalid data", HttpStatus.BAD_REQUEST);
         }
     }
-
-//    @PostMapping ("/login")
-//    public ResponseEntity<Object> authenticate(@RequestBody User user) {
-//        return userService.authenticateUser (user);
-//    }
-//@PostMapping ("/login")
-//    public ResponseEntity<Object> authenticate(@RequestBody String user) throws Exception {
-//        return userService.authenticateUser (user);
-//    }
-
-
-//    @RequestMapping(method = RequestMethod.POST, value = "/login", consumes = "text/plain")
-//    public ResponseEntity<Object> authenticate(@RequestBody String user) throws Exception {
-//        return userService.authenticateUser(user);
-//    }
-//
-//
-//    @RequestMapping(method = RequestMethod.POST, value = "/login", consumes = MediaType.APPLICATION_JSON_VALUE)
-//    public ResponseEntity<Object> authenticate(@RequestParam(value = "userName") String userName, @RequestParam(value = "password") String password) throws Exception {
-//        return userService.authenticateUserFromForm (userName, password);
-//    }
 
     @PatchMapping("/user/{id}")
     public ResponseEntity<String> updateUserById(@PathVariable Long id, @RequestBody Map<String, Object> userMap) throws UserNotFound {

@@ -10,7 +10,7 @@ import java.util.List;
 import java.util.Map;
 
 @RestController
-@CrossOrigin
+@CrossOrigin(origins = {"https://cors-everywhere-me.herokuapp.com/http://ec2-18-216-140-13.us-east-2.compute.amazonaws.com:8080/", "http://localhost:3000/"})
 public class ApplicationController {
 
     private final ApplicationService applicationService;
@@ -22,7 +22,6 @@ public class ApplicationController {
     @PostMapping
     public ResponseEntity<Object> createsApplication (@RequestBody HashMap<String, Object> userMap) {
         return applicationService.createApplication(userMap);
-
     }
 
     @PostMapping("/multiple")
@@ -43,11 +42,6 @@ public class ApplicationController {
     @GetMapping("/{id}")
     public ResponseEntity<Object> readApplicationById(@PathVariable Long id) throws ApplicationNotFound {
         return applicationService.readSpecificApplication(id);
-    }
-
-    @GetMapping("/dod/{dodId}")
-    public ResponseEntity<Application> readApplicationByDodId(@PathVariable String dodId) throws ApplicationNotFound {
-        return applicationService.readApplicationByDodId(dodId);
     }
 
     @PatchMapping("/{id}")

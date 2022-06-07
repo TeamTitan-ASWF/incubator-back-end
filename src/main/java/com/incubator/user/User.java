@@ -4,7 +4,6 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.incubator.application.Application;
 import com.incubator.encryption.AttributeEncryptor;
-import org.hibernate.annotations.ColumnTransformer;
 
 import javax.persistence.*;
 import java.time.LocalDate;
@@ -30,6 +29,7 @@ public class User {
     private String fName;
     private String lName;
     private String mI;
+    @Convert(converter = AttributeEncryptor.class)
     private String dodId;
     private String rank;
 

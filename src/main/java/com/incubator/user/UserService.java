@@ -3,22 +3,11 @@ package com.incubator.user;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.incubator.exceptions.UserNotFound;
-import io.jsonwebtoken.impl.crypto.DefaultJwtSignatureValidator;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
-// tslint:disable-next-line
-import io.jsonwebtoken.SignatureAlgorithm;
-import javax.crypto.SecretKey;
-import javax.crypto.spec.SecretKeySpec;
-//import SignatureAlgorithm
-import java.security.KeyFactory;
-import java.security.PublicKey;
-import java.security.spec.X509EncodedKeySpec;
 import java.time.LocalDate;
 import java.util.*;
-import static io.jsonwebtoken.SignatureAlgorithm.HS256;
-import static io.jsonwebtoken.SignatureAlgorithm.RS256;
 
 @Service
 public class UserService {
@@ -76,7 +65,6 @@ public class UserService {
         } else {
             return new ResponseEntity<>(realUser.get(), HttpStatus.ACCEPTED);
         }
-
     }
 
     public ResponseEntity<String> updateUser(Long id, Map<String, Object> userMap) throws UserNotFound {
