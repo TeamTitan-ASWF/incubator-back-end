@@ -8,7 +8,7 @@ import javax.persistence.*;
 import java.time.LocalDate;
 
 @Entity
-@Table(name = "incubators")
+@Table(name = "applications")
 public class Application {
 
     @ManyToOne

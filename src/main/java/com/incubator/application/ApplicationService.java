@@ -7,7 +7,6 @@ import com.incubator.user.UserRepository;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDate;
 import java.util.HashMap;
@@ -29,14 +28,12 @@ public class ApplicationService {
     public ResponseEntity<Object> createApplication(HashMap<String, Object> userMap) {
         ObjectMapper mapper = new ObjectMapper().findAndRegisterModules();
 
-        // JE - may be some problems here with these lines
         userMap.put("user", userRepo.findById(Long.valueOf(String.valueOf(userMap.get("user")))));
         userMap.put("dob", LocalDate.parse(userMap.get("dob").toString()));
 
         Application application = mapper.convertValue(userMap, Application.class);
         repository.save(application);
         return new ResponseEntity<>(application, HttpStatus.CREATED);
-
     }
 
     public ResponseEntity<Object> createApplications(Iterable<Application> applicationList) {
@@ -78,8 +75,6 @@ public class ApplicationService {
         }
 
         Application foundApplication = checkForApplication.get();
-
-        boolean isInvalidStatus = false;
 
         for (String k : applicationMap.keySet()) {
             switch (k) {
@@ -168,17 +163,6 @@ public class ApplicationService {
 
         this.repository.save(foundApplication);
         return new ResponseEntity<>(foundApplication, HttpStatus.OK);
-    }
-
-    @Transactional
-    public ResponseEntity<Application> readApplicationByDodId(String dodId) throws ApplicationNotFound {
-        Optional<Application> foundApplication = repository.findFirstByDodIdEquals(dodId);
-
-        if (foundApplication.isEmpty()) {
-            throw new ApplicationNotFound("Application does not exist, please check that your DODID is correct.");
-        }
-
-        return new ResponseEntity<>(foundApplication.get(), HttpStatus.OK);
     }
 
     public ResponseEntity<List<Object>> getApplicationsByUser(Long userId) throws ApplicationNotFound {
