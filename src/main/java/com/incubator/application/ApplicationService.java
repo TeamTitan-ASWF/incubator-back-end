@@ -105,7 +105,7 @@ public class ApplicationService {
                     foundApplication.setLastACFT(LocalDate.parse(applicationMap.get(k).toString()));
                     break;
                 case "acftScore":
-                    foundApplication.setAcftScore((Integer) applicationMap.get(k));
+                    foundApplication.setAcftScore(Integer.valueOf(String.valueOf(applicationMap.get(k))));
                     break;
                 case "height":
                     foundApplication.setHeight(String.valueOf(applicationMap.get(k)));
