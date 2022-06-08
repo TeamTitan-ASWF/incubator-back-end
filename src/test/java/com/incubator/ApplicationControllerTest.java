@@ -195,6 +195,6 @@ public class ApplicationControllerTest {
                         """)
                 )
                 .andExpect(status().isBadRequest())
-                .andExpect(content().string("Invalid Status submitted, needs to be: pending, approved, denied, or rescinded and you used: Joseph"));
+                .andExpect(content().string("Invalid Status submitted, needs to be: pending, approved, denied, rescinded, or in progress and you used: Joseph"));
     }
 }
