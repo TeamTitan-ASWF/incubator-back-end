@@ -25,13 +25,11 @@ public class ApplicationService {
         this.userRepo = userRepo;
     }
 
-    public ResponseEntity<Object> createApplication(HashMap<String, Object> userMap) {
+    public ResponseEntity<Object> createApplication(HashMap<String, Object> appMap) {
         ObjectMapper mapper = new ObjectMapper().findAndRegisterModules();
+        appMap.put("user", userRepo.findById(Long.valueOf(String.valueOf(appMap.get("user")))));
+        Application application = mapper.convertValue(appMap, Application.class);
 
-        userMap.put("user", userRepo.findById(Long.valueOf(String.valueOf(userMap.get("user")))));
-        userMap.put("dob", LocalDate.parse(userMap.get("dob").toString()));
-
-        Application application = mapper.convertValue(userMap, Application.class);
         repository.save(application);
         return new ResponseEntity<>(application, HttpStatus.CREATED);
     }

@@ -2,6 +2,7 @@ package com.incubator.user;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.incubator.application.Application;
 import com.incubator.exceptions.UserNotFound;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -27,6 +28,11 @@ public class UserService {
         }
         repository.save(user);
         return new ResponseEntity<>("User created", HttpStatus.CREATED);
+    }
+
+    public ResponseEntity<Object> postUsers(Iterable<User> userList) {
+        repository.saveAll(userList);
+        return new ResponseEntity<>(userList, HttpStatus.CREATED);
     }
 
     public ResponseEntity<User> getsOneUser(Long id) {

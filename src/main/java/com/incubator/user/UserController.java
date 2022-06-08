@@ -28,6 +28,11 @@ public class UserController {
         return userService.postOneUser (user);
     }
 
+    @PostMapping ("/user/multiple")
+    public ResponseEntity<Object> postsUsers(@RequestBody Iterable<User> userList) throws UserNotFound {
+        return userService.postUsers(userList);
+    }
+
     @PostMapping ("/login")
     public ResponseEntity<Object> authenticate(@RequestBody HashMap<String,String> userInfo) throws Exception {
         if(userInfo.containsKey("userName") && userInfo.containsKey("password")) {

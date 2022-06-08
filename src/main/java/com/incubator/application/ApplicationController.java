@@ -20,8 +20,8 @@ public class ApplicationController {
     }
 
     @PostMapping
-    public ResponseEntity<Object> createsApplication (@RequestBody HashMap<String, Object> userMap) {
-        return applicationService.createApplication(userMap);
+    public ResponseEntity<Object> createsApplication (@RequestBody HashMap<String, Object> appMap) {
+        return applicationService.createApplication(appMap);
     }
 
     @PostMapping("/multiple")

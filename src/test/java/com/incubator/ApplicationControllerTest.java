@@ -6,19 +6,18 @@ import com.incubator.application.Application;
 import com.incubator.application.ApplicationRepository;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.TestInstance;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.annotation.Rollback;
-
 import javax.transaction.Transactional;
 
 import java.net.URL;
 import java.nio.file.Files;
 import java.nio.file.Paths;
-import java.time.LocalDate;
 import java.util.List;
 
 import static org.hamcrest.Matchers.is;
@@ -27,6 +26,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 @SpringBootTest
 @AutoConfigureMockMvc
+@TestInstance(TestInstance.Lifecycle.PER_CLASS)
 public class ApplicationControllerTest {
 
     @Autowired
@@ -35,18 +35,15 @@ public class ApplicationControllerTest {
     @Autowired
     private ApplicationRepository repository;
 
-    private ObjectMapper mapper;
-    private String jsonStr;
-    private List<Application> applicationList;
+    private List<Application> appsList;
 
-    // save jason Application test data into table before all tests
+    // save json Application test data into table before all tests
     @BeforeAll
     void setup() throws Exception {
         String jsonStr = getJSON("/applications.json");
-        mapper = new ObjectMapper();
-        List<Application> applicationList = mapper.readValue(jsonStr, new TypeReference<List<Application>>() {
-        });
-        repository.saveAll(applicationList);
+        ObjectMapper mapper = new ObjectMapper().findAndRegisterModules();
+        appsList = mapper.readValue(jsonStr, new TypeReference<List<Application>>(){});
+        repository.saveAll(appsList);
     }
 
     @Test
@@ -57,41 +54,20 @@ public class ApplicationControllerTest {
                         .contentType(MediaType.APPLICATION_JSON)
                         .content("""
                                 {
-                                    "user": {
-                                        "fName": "Joe",
-                                        "lName": "Star",
-                                        "mI": "n",
-                                        "dodId": "1234567890",
-                                        "rank": "E-4",
-                                        "dob": "1980-09-10"
-                                    },
+                                    "user": 10,
                                     "lastACFT": "2022-05-19",
                                     "acftScore": 477
                                 }
                                 """))
                 .andExpect(status().isCreated())
-                .andExpect(jsonPath("$.fName", is("Joe")))
-                .andExpect(jsonPath("$.lName", is("Star")))
-                .andExpect(jsonPath("$.mI", is("n")))
-                .andExpect(jsonPath("$.dodId", is("1234567890")))
-                .andExpect(jsonPath("$.rank", is("E-4")))
-                .andExpect(jsonPath("$.dob", is("1980-09-10")))
                 .andExpect(jsonPath("$.lastACFT", is("2022-05-19")))
                 .andExpect(jsonPath("$.acftScore", is(477)));
     }
-/*
+
     @Test
     @Transactional
     @Rollback
     public void readAllApplicationsTest() throws Exception {
-
-
-        Application testApplication = new Application("Joe", "Star", "n",
-                "1234567890", "E-4", LocalDate.of(1980, 9, 10),
-                LocalDate.of(2022, 05, 19), 478);
-
-        this.repository.save(testApplication);
-
         this.mvc.perform(get("/"))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$[0].fName", is("Joe")))
@@ -104,13 +80,7 @@ public class ApplicationControllerTest {
     @Transactional
     @Rollback
     public void deleteApplicationsTest() throws Exception {
-        Application testApplication = new Application("Joe", "Star", "n",
-                "1234567890", "E-4", LocalDate.of(1980, 9, 10),
-                LocalDate.of(2022, 05, 19), 478);
-
-        this.repository.save(testApplication);
-
-        Long id = testApplication.getId();
+        Long id = appsList.get(0).getId();
         String path = "/" + id + "";
 
         this.mvc.perform(delete(path))
@@ -128,13 +98,7 @@ public class ApplicationControllerTest {
     @Transactional
     @Rollback
     public void readSpecificApplicationsTest() throws Exception {
-        Application testApplication = new Application("Joe", "Star", "n",
-                "1234567890", "E-4", LocalDate.of(1980, 9, 10),
-                LocalDate.of(2022, 05, 19), 478);
-
-        this.repository.save(testApplication);
-
-        Long id = testApplication.getId();
+        Long id = appsList.get(0).getId();
         String path = "/" + id + "";
 
         this.mvc.perform(get(path))
@@ -158,20 +122,13 @@ public class ApplicationControllerTest {
     @Transactional
     @Rollback
     public void updateApplicationsTest() throws Exception {
-        Application testApplication = new Application("Joe", "Star", "n",
-                "1234567890", "E-4", LocalDate.of(1980, 9, 10),
-                LocalDate.of(2022, 05, 19), 478);
-
-        this.repository.save(testApplication);
-
-        Long id = testApplication.getId();
+        Long id = appsList.get(0).getId();
         String path = "/" + id + "";
 
         this.mvc.perform(patch(path)
                         .contentType(MediaType.APPLICATION_JSON)
                         .content("""
                                 {
-                                    "fName":"Joseph",
                                     "lastACFT":"2022-05-10",
                                     "weight": 160
                                 }
@@ -195,18 +152,11 @@ public class ApplicationControllerTest {
                 .andExpect(content().string("Application does not exist, therefore not updated"));
     }
 
-
     @Test
     @Transactional
     @Rollback
     public void updateWithInvalidStatusGivesError() throws Exception {
-        Application testApplication = new Application("Joe", "Star", "n",
-                "1234567890", "E-4", LocalDate.of(1980, 9, 10),
-                LocalDate.of(2022, 05, 19), 478);
-
-        this.repository.save(testApplication);
-
-        Long id = testApplication.getId();
+        Long id = appsList.get(0).getId();
         String path = "/" + id + "";
 
         this.mvc.perform(patch(path)
@@ -220,7 +170,7 @@ public class ApplicationControllerTest {
                 .andExpect(status().isBadRequest())
                 .andExpect(content().string("Invalid Status submitted, needs to be: pending, approved, denied, or rescinded and you used: Joseph"));
     }
-*/
+
     // helper method to read files
     private String getJSON(String path) throws Exception {
         URL url = this.getClass().getResource(path);

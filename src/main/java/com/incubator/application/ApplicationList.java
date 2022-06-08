@@ -6,13 +6,15 @@ import java.time.LocalDate;
 
 public class ApplicationList {
     private Long id;
+
+    // user data
     private  String fName;
     private  String lName;
     private String mI;
     private  String rank;
-
     @JsonFormat(pattern = "yyyy-MM-dd", timezone = "America/Chicago")
     private LocalDate dob;
+
     private String status = "pending";
     @JsonFormat(pattern = "yyyy-MM-dd", timezone = "America/Chicago")
     private LocalDate dateSubmitted;

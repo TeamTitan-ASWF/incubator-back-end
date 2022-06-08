@@ -31,7 +31,6 @@ public class User {
     private String fName;
     private String lName;
     private String mI;
-    //@Convert(converter = AttributeEncryptor.class)
     private String dodId;
     private String rank;
     @JsonFormat(pattern = "yyyy-MM-dd", timezone = "America/Chicago")
