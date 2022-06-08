@@ -1,0 +1,62 @@
+[
+  {
+    "userName": "eren@paradis.com",
+    "fName": "Eren",
+    "lName": "Jaeger",
+    "mI": "NMI",
+    "dodId": "1234567801",
+    "rank": "O10",
+    "dob": "2003-01-01",
+    "isReviewer": false
+  },
+  {
+    "userName": "armin@paradis.com",
+    "fName": "Armin",
+    "lName": "Arlet",
+    "mI": "NMI",
+    "dodId": "1234567802",
+    "rank": "E9",
+    "dob": "2000-02-01",
+    "isReviewer": false
+  },
+  {
+    "userName": "mikasa@paradis.com",
+    "fName": "Mikasa",
+    "lName": "Ackerman",
+    "mI": "NMI",
+    "dodId": "1234567803",
+    "rank": "E9",
+    "dob": "2000-03-01",
+    "isReviewer": false
+  },
+  {
+    "userName": "levi@paradis.com",
+    "fName": "Levi",
+    "lName": "Ackerman",
+    "mI": "NMI",
+    "dodId": "1234567804",
+    "rank": "O3",
+    "dob": "1983-04-01",
+    "isReviewer": false
+  },
+  {
+    "userName": "reiner@marley.com",
+    "fName": "Reiner",
+    "lName": "Braun",
+    "mI": "NMI",
+    "dodId": "1234567805",
+    "rank": "O10",
+    "dob": "1998-05-01",
+    "isReviewer": false
+  },
+  {
+    "userName": "annie@marley.com",
+    "fName": "Annie",
+    "lName": "Leonhart",
+    "mI": "NMI",
+    "dodId": "1234567806",
+    "rank": "E9",
+    "dob": "1999-06-01",
+    "isReviewer": false
+  }
+]

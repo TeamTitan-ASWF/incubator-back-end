@@ -12,6 +12,7 @@ import java.util.Set;
 @Entity
 @Table(name = "users")
 public class User {
+
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
@@ -26,13 +27,13 @@ public class User {
     private String password;
     private Boolean isReviewer = false;
 
+    // duplicate columns in APPLICATIONS table
     private String fName;
     private String lName;
     private String mI;
     //@Convert(converter = AttributeEncryptor.class)
     private String dodId;
     private String rank;
-
     @JsonFormat(pattern = "yyyy-MM-dd", timezone = "America/Chicago")
     private LocalDate dob;
 

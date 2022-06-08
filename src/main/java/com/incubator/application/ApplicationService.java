@@ -78,24 +78,6 @@ public class ApplicationService {
 
         for (String k : applicationMap.keySet()) {
             switch (k) {
-                case "fName":
-                    foundApplication.setfName((String) applicationMap.get(k));
-                    break;
-                case "lName":
-                    foundApplication.setlName((String) applicationMap.get(k));
-                    break;
-                case "mI":
-                    foundApplication.setmI((String) applicationMap.get(k));
-                    break;
-                case "dodId":
-                    foundApplication.setDodId((String) applicationMap.get(k));
-                    break;
-                case "rank":
-                    foundApplication.setRank((String) applicationMap.get(k));
-                    break;
-                case "dob":
-                    foundApplication.setDob(LocalDate.parse(applicationMap.get(k).toString()));
-                    break;
                 case "lastACFT":
                     foundApplication.setLastACFT(LocalDate.parse(applicationMap.get(k).toString()));
                     break;
