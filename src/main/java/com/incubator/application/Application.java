@@ -18,7 +18,6 @@ public class Application {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    // duplicate columns in USER table
 //    private String fName;
 //    private String lName;
 //    private String mI;

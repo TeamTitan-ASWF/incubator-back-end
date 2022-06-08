@@ -19,7 +19,7 @@ public class UserController {
     }
 
     @GetMapping("/user/{id}")
-    public ResponseEntity<User> getsOneUser(@PathVariable Long id) {
+    public ResponseEntity<User> getsOneUser(@PathVariable Long id) throws UserNotFound {
         return userService.getsOneUser(id);
     }
 

@@ -3,6 +3,7 @@ package com.incubator.user;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.incubator.application.Application;
+import com.incubator.exceptions.ApplicationNotFound;
 import com.incubator.exceptions.UserNotFound;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -35,8 +36,16 @@ public class UserService {
         return new ResponseEntity<>(userList, HttpStatus.CREATED);
     }
 
-    public ResponseEntity<User> getsOneUser(Long id) {
-        return new ResponseEntity<>(repository.findById(id).get(), HttpStatus.OK);
+    public ResponseEntity<User> getsOneUser(Long id) throws UserNotFound {
+        //return new ResponseEntity<>(repository.findById(id).get(), HttpStatus.OK);
+
+        Optional<User> foundUser = repository.findById(id);
+
+        if (foundUser.isEmpty()) {
+            throw new UserNotFound("User does not exist");
+        }
+
+        return new ResponseEntity<>(foundUser.get(), HttpStatus.OK);
     }
 
     public ResponseEntity<Object> authenticateUserFromForm(String userName, String password) throws Exception {

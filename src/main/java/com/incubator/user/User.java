@@ -27,7 +27,6 @@ public class User {
     private String password;
     private Boolean isReviewer = false;
 
-    // duplicate columns in APPLICATIONS table
     private String fName;
     private String lName;
     private String mI;

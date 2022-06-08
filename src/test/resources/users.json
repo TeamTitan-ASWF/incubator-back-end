@@ -1,6 +1,7 @@
 [
   {
     "userName": "eren@paradis.com",
+    "password": "ln36azaOI5a7MoOFzWx5AweT8KgWSsMo5qcQdA5vlvvRI9OUZ2etkYpNoj4qYqvW",
     "fName": "Eren",
     "lName": "Jaeger",
     "mI": "NMI",
@@ -11,6 +12,7 @@
   },
   {
     "userName": "armin@paradis.com",
+    "password": "ln36azaOI5a7MoOFzWx5AweT8KgWSsMo5qcQdA5vlvvRI9OUZ2etkYpNoj4qYqvW",
     "fName": "Armin",
     "lName": "Arlet",
     "mI": "NMI",
@@ -21,6 +23,7 @@
   },
   {
     "userName": "mikasa@paradis.com",
+    "password": "ln36azaOI5a7MoOFzWx5AweT8KgWSsMo5qcQdA5vlvvRI9OUZ2etkYpNoj4qYqvW",
     "fName": "Mikasa",
     "lName": "Ackerman",
     "mI": "NMI",
@@ -31,6 +34,7 @@
   },
   {
     "userName": "levi@paradis.com",
+    "password": "ln36azaOI5a7MoOFzWx5AweT8KgWSsMo5qcQdA5vlvvRI9OUZ2etkYpNoj4qYqvW",
     "fName": "Levi",
     "lName": "Ackerman",
     "mI": "NMI",
@@ -41,6 +45,7 @@
   },
   {
     "userName": "reiner@marley.com",
+    "password": "ln36azaOI5a7MoOFzWx5AweT8KgWSsMo5qcQdA5vlvvRI9OUZ2etkYpNoj4qYqvW",
     "fName": "Reiner",
     "lName": "Braun",
     "mI": "NMI",
@@ -51,6 +56,7 @@
   },
   {
     "userName": "annie@marley.com",
+    "password": "ln36azaOI5a7MoOFzWx5AweT8KgWSsMo5qcQdA5vlvvRI9OUZ2etkYpNoj4qYqvW",
     "fName": "Annie",
     "lName": "Leonhart",
     "mI": "NMI",
