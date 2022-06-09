@@ -6,10 +6,11 @@ import java.time.LocalDate;
 
 public class ApplicationList {
     private Long id;
-    private  String fName;
-    private  String lName;
+    private String fName;
+    private String lName;
     private String mI;
-    private  String rank;
+    private String rank;
+    private Long appId;
 
     @JsonFormat(pattern = "yyyy-MM-dd", timezone = "America/Chicago")
     private LocalDate dob;
@@ -17,15 +18,24 @@ public class ApplicationList {
     @JsonFormat(pattern = "yyyy-MM-dd", timezone = "America/Chicago")
     private LocalDate dateSubmitted;
 
-    public ApplicationList(Long id, String fName, String lName, String mI, String rank, LocalDate dob, String status, LocalDate dateSubmitted) {
+    public ApplicationList(Long id, String fName, String lName, String mI, String rank, Long appId, LocalDate dob, String status, LocalDate dateSubmitted) {
         this.id = id;
         this.fName = fName;
         this.lName = lName;
         this.mI = mI;
         this.rank = rank;
+        this.appId = appId;
         this.dob = dob;
         this.status = status;
         this.dateSubmitted = dateSubmitted;
+    }
+
+    public Long getAppId() {
+        return appId;
+    }
+
+    public void setAppId(Long appId) {
+        this.appId = appId;
     }
 
     public Long getId() {

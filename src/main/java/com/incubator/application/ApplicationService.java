@@ -58,7 +58,7 @@ public class ApplicationService {
     }
 
     public ResponseEntity<Object> readSpecificApplication(Long id) throws ApplicationNotFound {
-        Optional<Application> foundApplication = repository.findById(id);
+        Optional<Application> foundApplication = repository.getOneApp(id);
 
         if (foundApplication.isEmpty()) {
             throw new ApplicationNotFound("Application does not exist");
@@ -166,7 +166,7 @@ public class ApplicationService {
     }
 
     public ResponseEntity<Object> getApplicationsByUser(Long userId) throws ApplicationNotFound {
-        List<Application> foundApplication = repository.findByUserIdEquals(userId);
+        List<ApplicationList> foundApplication = repository.getAppsByUserId(userId);
 
         if (foundApplication.isEmpty()) {
             throw new ApplicationNotFound("No application found with user id of " + userId);

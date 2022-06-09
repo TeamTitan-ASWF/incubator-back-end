@@ -52,6 +52,38 @@ public class Application {
     @JsonFormat(pattern = "yyyy-MM-dd", timezone = "America/Chicago")
     private LocalDate dateSubmitted = LocalDate.now();
 
+    // This constructor is used for the getOneApp join query
+    public Application(String fName, String lName, String mI, String dodId, String rank, LocalDate dob, User user, Long id, LocalDate lastACFT, Integer acftScore, Integer height, Float weight, String techBG, String motivation, String referenceName, String referenceRank, String referenceEmail, String referencePhone, String referenceName2, String referenceRank2, String referenceEmail2, String referencePhone2, String referenceName3, String referenceRank3, String referenceEmail3, String referencePhone3, String status, LocalDate dateSubmitted) {
+        this.fName = fName;
+        this.lName = lName;
+        this.mI = mI;
+        this.dodId = dodId;
+        this.rank = rank;
+        this.dob = dob;
+        this.user = user;
+        this.id = id;
+        this.lastACFT = lastACFT;
+        this.acftScore = acftScore;
+        this.height = height;
+        this.weight = weight;
+        this.techBG = techBG;
+        this.motivation = motivation;
+        this.referenceName = referenceName;
+        this.referenceRank = referenceRank;
+        this.referenceEmail = referenceEmail;
+        this.referencePhone = referencePhone;
+        this.referenceName2 = referenceName2;
+        this.referenceRank2 = referenceRank2;
+        this.referenceEmail2 = referenceEmail2;
+        this.referencePhone2 = referencePhone2;
+        this.referenceName3 = referenceName3;
+        this.referenceRank3 = referenceRank3;
+        this.referenceEmail3 = referenceEmail3;
+        this.referencePhone3 = referencePhone3;
+        this.status = status;
+        this.dateSubmitted = dateSubmitted;
+    }
+
     public Application(User user, Long id, String fName, String lName, String mI, String dodId, String rank, LocalDate dob, LocalDate lastACFT, Integer acftScore, Integer height, Float weight, String techBG, String motivation, String referenceName, String referenceRank, String referenceEmail, String referencePhone, String referenceName2, String referenceRank2, String referenceEmail2, String referencePhone2, String referenceName3, String referenceRank3, String referenceEmail3, String referencePhone3, String status, LocalDate dateSubmitted) {
         this.user = user;
         this.id = id;
