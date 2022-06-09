@@ -10,8 +10,8 @@ import java.util.List;
 import java.util.Map;
 
 @RestController
-//@CrossOrigin(origins = {"https://cors-everywhere-me.herokuapp.com/http://ec2-18-216-140-13.us-east-2.compute.amazonaws.com:8080/", "http://localhost:3000/"})
-@CrossOrigin
+@CrossOrigin(origins = {"https://prod.d29kzi0clq5ard.amplifyapp.com/", "https://dev.d3jhuywnz6npir.amplifyapp.com/", "http://localhost:3000/"})
+//@CrossOrigin
 public class ApplicationController {
 
     private final ApplicationService applicationService;
